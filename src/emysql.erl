@@ -255,13 +255,13 @@ encoding_ok(_)  ->  erlang:error(badarg).
 %% emysql_conn_mgr:add_pool() is translated into a blocking gen-server call.
 
 add_pool(PoolId, Options) when is_list(Options) ->
-    Size = proplists:get_value(size, Options, 5),
+    Size = proplists:get_value(size, Options, 1),
     User = proplists:get_value(user, Options, ""),
     Password = proplists:get_value(password, Options, ""),
     Host = proplists:get_value(host, Options, "127.0.0.1"),
     Port = proplists:get_value(port, Options, 3306),
     Database = proplists:get_value(database, Options, undefined),
-    Encoding = proplists:get_value(encoding, Options, latin1),
+    Encoding = proplists:get_value(encoding, Options, utf8),
     StartCmds = proplists:get_value(start_cmds, Options, []),
     ConnectTimeout = proplists:get_value(connect_timeout, Options, infinity),
     Warnings = proplists:get_value(warnings, Options, false),
